@@ -17,7 +17,7 @@ app.use('/api/triage', triageRoutes);
 
 // 新增給 EHR 用 (標準 CDS Hooks)
 // 注意：這裡通常直接掛在根目錄，因為標準路徑是 /cds-services
-app.use('/', cdsHooksRoutes);
+app.use('/cds-services', cdsHooksRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

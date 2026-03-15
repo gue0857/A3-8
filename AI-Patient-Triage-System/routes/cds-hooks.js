@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
         services: [
             {
                 hook: "patient-view", // 觸發時機：通常 triage 評估是在進入病歷畫面時觸發
-                id: "triage-assessment", // ⚠️ 重要：這裡必須與下方 POST 的路徑一致
+                id: "patient-triage-service", // ⚠️ 重要：這裡必須與下方 POST 的路徑一致
                 title: "AI 智能檢傷與初步評估系統",
                 description: "分析病患症狀與情緒，自動生成檢傷建議與處置優先級別。",
                 prefetch: {
@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 // 👆 結束
 
 // Service Endpoint: patient-view
-router.post('/cds-services/patient-triage-check', async (req, res) => {
+router.post('/patient-triage-service', async (req, res) => {
     const context = req.body.context || {};
     const patientId = context.patientId;
 
@@ -72,14 +72,7 @@ router.post('/cds-services/patient-triage-check', async (req, res) => {
                             code: "80615-8"
                         }
                     },
-                    detail: `${summaryNote}\n${symptomsNote}\n(資料來源: 病人最新自述)`,
-                    links: [
-                        {
-                            label: "查看詳細報告",
-                            url: `http://localhost:5173/report/${observation.id}`, // 假設前端有報告頁
-                            type: "absolute"
-                        }
-                    ]
+                    detail: `${summaryNote}\n${symptomsNote}\n(資料來源: 病人最新自述)`
                 });
             } else {
                 // 低風險也可以選擇跳一個安心卡，或不跳(空陣列)
