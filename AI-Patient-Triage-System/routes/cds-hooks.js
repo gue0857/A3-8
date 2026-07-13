@@ -94,5 +94,5 @@ router.post('/patient-triage-service', async (req, res) => {
     // 回傳 CDS Cards JSON
     res.json({ cards });
 });
-
+// 🌟 關鍵就在這裡：把設定好的 router 導出，讓主程式可以使用
 module.exports = router;

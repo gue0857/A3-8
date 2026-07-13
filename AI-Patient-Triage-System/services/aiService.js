@@ -7,7 +7,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 async function analyzePatientFeedback(patientText) {
     try {
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.5-flash-lite", // 或 gemini-pro
+            model: "gemini-2.5-flash", // 或 gemini-pro
             generationConfig: { responseMimeType: "application/json" }
         });
 

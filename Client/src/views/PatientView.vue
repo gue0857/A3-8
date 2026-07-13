@@ -27,7 +27,7 @@ const submitTriage = async () => {
     // 模擬病人 ID (實際專案應從登入資訊取得)
     const payload = {
       patientText: patientText.value,
-      patientId: "82" 
+      patientId: "131367607" 
     };
 
     const response = await axios.post(API_URL, payload);
